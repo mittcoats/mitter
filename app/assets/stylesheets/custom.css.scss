@@ -67,11 +67,10 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
-}
-
-#logo:hover {
-  color: white;
-  text-decoration: none;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 
