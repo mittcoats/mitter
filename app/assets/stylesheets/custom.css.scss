@@ -1,5 +1,6 @@
-@import "bootstrap-sprockets";
+@import 'bootstrap-sprockets';
 @import "bootstrap";
+
 
 /* ----------- MIXINS, VARIABLES, ETC ----------- */
 
@@ -11,15 +12,6 @@ $gray-medium-light: #eaeaea;
   box-sizing: border-box;
 }
 
-/* ----------- MISCELLANEOUS ----------- */
-
-.debug_dump{
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
 
 /* ----------- UNIVERSAL ----------- */
 
@@ -168,3 +160,13 @@ input {
   height: auto !important;
 }
 
+
+/* ----------- MISCELLANEOUS ----------- */
+
+.debug_dump{
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
