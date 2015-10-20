@@ -16,13 +16,14 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     end
     assert_select 'div#error_explanation'
     # Valid submission
-    content = "This micropost is really swell"
-    assert_difference 'Micropost.count' do
+    content = "This micropost is really swell."
+    assert_difference 'Micropost.count', 1 do
       post microposts_path, micropost: { content: content }
     end
     assert_redirected_to root_url
     follow_redirect!
     assert_match content, response.body
+    assert_no_match "This micropost is really swell. This micropost is really swell.", response.body
     # Delete a post.
     assert_select 'a', text: 'delete'
     first_micropost = @user.microposts.paginate(page: 1).first
