@@ -27,7 +27,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "email should not be too long" do
-    @user.email = "a" *244 + "@example.com"
+    @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
   
@@ -75,6 +75,35 @@ class UserTest < ActiveSupport::TestCase
     @user.microposts.create!(content: "Lorem ipsum")
     assert_difference 'Micropost.count', -1 do
       @user.destroy
+    end
+  end
+  
+  test "should follow & unfollow a user" do
+    mitt = users(:mitt)
+    sam = users(:sam)
+    assert_not mitt.following?(sam)
+    mitt.follow(sam)
+    assert mitt.following?(sam)
+    assert sam.followers.include?(mitt)
+    mitt.unfollow(sam)
+    assert_not mitt.following?(sam)
+  end
+  
+  test "feed should have the right posts" do
+    mitt  = users(:mitt)
+    sam   = users(:sam)
+    penny = users(:penny)
+    # Posts from a followed user
+    penny.microposts.each do |post_following|
+      assert mitt.feed.include?(post_following)
+    end
+    # Posts from self
+    mitt.microposts.each do |post_self|
+      assert mitt.feed.include?(post_self)
+    end
+    # Posts from unfollowed user
+    sam.microposts.each do |post_unfollowed|
+      assert_not mitt.feed.include?(post_unfollowed)
     end
   end
   

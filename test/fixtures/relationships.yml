@@ -1,0 +1,15 @@
+one: 
+  follower: mitt
+  followed: teddy
+  
+two:
+  follower: mitt
+  followed: penny
+  
+three:
+  follower: teddy
+  followed: mitt
+  
+four:
+  follower: sam
+  followed: mitt
